@@ -32,18 +32,17 @@ End-to-end cricket analytics project using Cricsheet data: automated scraping, J
 
 ## 🚀 How to Run
 ### 1. Scrape & Parse → CSVs
-Open `Data_Scraping.ipynb` and run all cells:
-Downloads:
-- Tests: `tests_json.zip`
-- ODIs: `odis_json.zip`
-- T20s: `t20s_json.zip`
-- IPL: `ipl_json.zip`
+- Open `Data_Scraping.ipynb` and run all cells:
+- Downloads:
+    - Tests: `tests_json.zip`
+    - ODIs: `odis_json.zip`
+    - T20s: `t20s_json.zip`
+    - IPL: `ipl_json.zip`
+- Extracts JSONs into cricsheet_data/<FORMAT>/
+- Parses to CSVs at cricsheet_data/processed/{test,ODI,T20,IPL}.csv
+- Includes stable match_id (from filename) and match_date (first value in info.dates)
 
-Extracts JSONs into cricsheet_data/<FORMAT>/
-Parses to CSVs at cricsheet_data/processed/{test,ODI,T20,IPL}.csv
-Includes stable match_id (from filename) and match_date (first value in info.dates)
-
-Output(Examples):
+- Output(Examples):
 ```bash
 cricsheet_data/processed/test.csv
 cricsheet_data/processed/ODI.csv
@@ -57,16 +56,14 @@ Run:
 python create_DB.py
 ```
 What it does:
+- Creates cricsheet_match_data.db outside the cricsheet_data/ folder
 
-Creates cricsheet_match_data.db outside the cricsheet_data/ folder
-
-Creates four tables (fresh each run):
-- test_table
-- odi_table
-- t20_table
-- ipl_table
-
-Loads each CSV (append mode per run), builds useful indexes, runs quick sanity checks (row counts, null checks, negative values, venue distribution).
+- Creates four tables (fresh each run):
+    - test_table
+    - odi_table
+    - t20_table
+    - ipl_table
+- Loads each CSV (append mode per run), builds useful indexes, runs quick sanity checks (row counts, null checks, negative values, venue distribution).
 
 ### 3. SQL Analysis (Notebook)
 
@@ -76,7 +73,7 @@ Loads each CSV (append mode per run), builds useful indexes, runs quick sanity c
 
 ### 4. Visualization (Notebook)
 
--Open `visualization.ipynb`:
+- Open `visualization.ipynb`:
 - Load CSVs:
 ```python
 import pandas as pd, seaborn as sns, matplotlib.pyplot as plt
@@ -114,4 +111,5 @@ ipl_df  = pd.read_csv(f"{BASE}/IPL.csv" , low_memory=False)
 3. Explore with `queries.ipynb` (SQL)
 4. Visualize with `visualization.ipynb` (pandas + seaborn)
 5. Build/refresh Power BI dashboard from the `processed/` folder
+
 
